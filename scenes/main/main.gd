@@ -113,8 +113,10 @@ func _on_combat_report(report: Dictionary) -> void:
 	text += "  Men: %d  |  Strength: %.0f\n" % [report["atk_men_before"], report["atk_strength"]]
 	text += "  Losses: %d  |  Survivors: %d\n\n" % [report["atk_losses"], report["atk_survivors"]]
 	text += "ENEMY FORCES:\n"
-	text += "  Army: %d  |  Militia: %d  |  Str: %.0f\n" % [
-		report["def_men_before"], report["def_militia"], report["def_strength"]]
+	text += (
+		"  Army: %d  |  Militia: %d  |  Str: %.0f\n"
+		% [report["def_men_before"], report["def_militia"], report["def_strength"]]
+	)
 	text += "  Losses: %d  |  Survivors: %d" % [report["def_losses"], report["def_survivors"]]
 
 	report_label.text = text

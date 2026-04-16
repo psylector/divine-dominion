@@ -43,8 +43,13 @@ func _init(pos: Vector2i = Vector2i.ZERO) -> void:
 
 ## Returns total number of men in this sector.
 func get_total_men() -> int:
-	return (men[Task.IDLE] + men[Task.MINING] + men[Task.DESIGN]
-		+ men[Task.MANUFACTURE] + men[Task.ARMY])
+	return (
+		men[Task.IDLE]
+		+ men[Task.MINING]
+		+ men[Task.DESIGN]
+		+ men[Task.MANUFACTURE]
+		+ men[Task.ARMY]
+	)
 
 
 ## Sets men for a specific task, returns actual count set (clamped to available).
@@ -75,7 +80,8 @@ func to_dict() -> Dictionary:
 		"owner_id": owner_id,
 		"has_tower": has_tower,
 		"element_reserves": element_reserves,
-		"men": {
+		"men":
+		{
 			"idle": men[Task.IDLE],
 			"mining": men[Task.MINING],
 			"design": men[Task.DESIGN],

@@ -36,8 +36,10 @@ func get_player_sectors(player_id: int) -> Array[SectorModel]:
 func get_neighbors(pos: Vector2i) -> Array[Vector2i]:
 	var result: Array[Vector2i] = []
 	var offsets: Array[Vector2i] = [
-		Vector2i(0, -1), Vector2i(0, 1),
-		Vector2i(-1, 0), Vector2i(1, 0),
+		Vector2i(0, -1),
+		Vector2i(0, 1),
+		Vector2i(-1, 0),
+		Vector2i(1, 0),
 	]
 	for offset: Vector2i in offsets:
 		var neighbor: Vector2i = pos + offset

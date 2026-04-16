@@ -65,6 +65,21 @@ All game data (epochs, weapons, shields, costs) must be in **Godot Resource file
 - **Composition over inheritance**
 - **No third-party addons** for MVP (except optionally GUT for testing)
 - Docstrings above every class and public method
+- **Use `SectorModel.Task` enum keys** when accessing `sector.men` dictionary — never plain `int` (Godot treats enum and int as different dictionary keys)
+- **`preload` as const** at top of file: `const SCENE: PackedScene = preload("res://...")`, not inline in functions
+- **Max line length**: 120 characters (enforced by gdlint)
+- **Class definition order** (enforced by gdlint): classnames → extends → docstrings → signals → enums → consts → exports → pubvars → prvvars → onready vars
+
+## Linting & Formatting
+
+Before committing, ensure code passes both checks:
+
+```bash
+gdlint scripts/ scenes/
+gdformat --check scripts/ scenes/
+```
+
+Or use `gdformat scripts/ scenes/` to auto-fix formatting. Pre-commit hooks run these automatically if installed (`pre-commit install`).
 
 ## Game Mechanics Summary
 

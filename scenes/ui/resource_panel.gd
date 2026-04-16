@@ -42,7 +42,9 @@ func refresh() -> void:
 	# Research progress
 	var next_epoch: EpochData = GameState.get_next_epoch(0)
 	if next_epoch:
-		research_label.text = "Research: %.0f / %d" % [player.design_points, next_epoch.design_points_required]
+		research_label.text = (
+			"Research: %.0f / %d" % [player.design_points, next_epoch.design_points_required]
+		)
 		research_bar.max_value = next_epoch.design_points_required
 		research_bar.value = player.design_points
 		research_bar.visible = true
@@ -61,7 +63,9 @@ func refresh() -> void:
 		var w: WeaponData = load(path) as WeaponData
 		if w:
 			weapon_names.append("%s %s" % [w.icon, w.name])
-	weapons_label.text = "Weapons: %s" % ", ".join(weapon_names) if weapon_names.size() > 0 else "Weapons: none"
+	weapons_label.text = (
+		"Weapons: %s" % ", ".join(weapon_names) if weapon_names.size() > 0 else "Weapons: none"
+	)
 
 
 func _on_state_changed_generic(_a: Variant = null, _b: Variant = null) -> void:
@@ -80,4 +84,6 @@ func _process(_delta: float) -> void:
 	var next_epoch: EpochData = GameState.get_next_epoch(0)
 	if next_epoch:
 		research_bar.value = player.design_points
-		research_label.text = "Research: %.0f / %d" % [player.design_points, next_epoch.design_points_required]
+		research_label.text = (
+			"Research: %.0f / %d" % [player.design_points, next_epoch.design_points_required]
+		)
