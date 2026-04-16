@@ -1,0 +1,92 @@
+# CodeRabbit configuration for divine-dominion
+# Docs: https://docs.coderabbit.ai/reference/configuration
+
+language: en-US
+
+reviews:
+  high_level_summary: true
+  poem: false
+  request_changes_workflow: false
+  review_status: true
+
+  auto_review:
+    enabled: true
+    drafts: false
+    base_branches:
+      - main
+
+  path_instructions:
+    - path: "scripts/models/**/*.gd"
+      instructions: |
+        This is the MODEL layer of an MVC architecture.
+        Enforce strictly:
+        - NO UI logic, no Control node references, no scene manipulation
+        - ALL state mutations must emit appropriate signals via GameState
+        - Public methods must be typed (params + return type)
+        - Private methods prefixed with underscore
+        - Data classes should extend Resource, not Node
+
+    - path: "scripts/systems/**/*.gd"
+      instructions: |
+        This is the SYSTEMS layer (CombatSystem, AISystem, TickEngine, etc.).
+        Enforce:
+        - Systems mutate models via method calls, never via direct field access
+        - Systems should not hold their own game state — state lives in models
+        - Systems communicate results via signals, not return values where possible
+        - AISystem must not call into UI/scenes directly
+
+    - path: "scenes/**/*.gd"
+      instructions: |
+        This is the VIEW layer. Enforce:
+        - NO business logic (validation, state mutation rules, calculations)
+          — if you see this, suggest moving it to scripts/models or scripts/systems
+        - Use @onready and unique node names (%NodeName) for references
+        - Connect signals in _ready(), disconnect in _exit_tree() if needed
+        - UI observes models via signals — never writes to models directly
+        - Watch for manual _refresh_all_views() calls — these indicate missing signal
+          connections; suggest reactive pattern instead
+
+    - path: "**/*.gd"
+      instructions: |
+        GDScript code style (enforced across entire codebase):
+        - Strict typing everywhere: `var x: int = 0`, typed function signatures with return type
+        - No magic numbers — use constants or enums (e.g., Player IDs, Tech levels)
+        - Functions max ~20 lines — suggest extraction when longer
+        - Composition over inheritance
+        - Docstrings above every class and non-trivial public method
+        - snake_case for variables/functions, PascalCase for classes/types
+        - Use `preload` at top of file as `const`, not inline
+
+    - path: "resources/**/*.tres"
+      instructions: |
+        These are Godot Resource data files. Check that:
+        - They reference valid Resource scripts in scripts/data/
+        - No hardcoded paths with absolute filesystem references
+        - Values look reasonable for game balance (flag extreme outliers)
+
+  tools:
+    markdownlint:
+      enabled: true
+    languagetool:
+      enabled: true
+      language: en-US
+    yamllint:
+      enabled: true
+    actionlint:
+      enabled: true
+    github-checks:
+      enabled: true
+      timeout_ms: 180000
+
+chat:
+  auto_reply: true
+
+knowledge_base:
+  learnings:
+    scope: auto
+  issues:
+    scope: auto
+  pull_requests:
+    scope: auto
+
+early_access: true

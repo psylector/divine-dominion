@@ -68,15 +68,26 @@ All game data (epochs, weapons, shields, costs) must be in **Godot Resource file
 
 ## Game Mechanics Summary
 
-- **Fixed tick rate**: 10 ticks/second for all game logic (reproduction, mining, design progress)
+- **Fixed tick rate**: 4 ticks/second for all game logic (reproduction, mining, design progress)
 - **Men allocation**: 5 tasks per sector — Idle (reproduction), Mining, Design, Manufacture, Army
-- **Combat**: `strength = men_count * tech_weapon_multiplier`, winner takes sector
-- **AI**: Simple state machine (EXPAND/RESEARCH/DEFEND/ATTACK), decides every 2-5 seconds (not per-tick)
+- **Combat**: `strength = men_count * tech_weapon_multiplier`, both sides take casualties
+- **AI**: Simple state machine (EXPAND/RESEARCH/DEFEND/ATTACK), decides every 8-15 seconds, 20s startup delay
 - **MVP scope**: 1 island, 4 sectors (2x2), 2 players, 3 tech levels (of 10)
 
 ## Out of Scope (MVP)
 
 Do not implement: sprites/animations, audio, multiplayer, alliances, shields, save/load UI, settings menu, localization. These are planned for future iterations.
+
+## Code Review Workflow
+
+This project uses a multi-layered code quality pipeline:
+
+1. **Local pre-commit hooks** (`gdlint`, `gdformat`) — run before every commit
+2. **GitHub Actions CI** — validates syntax, style, and Godot project integrity on every PR
+3. **CodeRabbit** — AI-based review focused on architecture, logic, and guidelines
+
+When opening a PR, let CodeRabbit complete its review before merging.
+Path-specific review rules are defined in `.coderabbit.yaml`.
 
 ## Workflow
 
