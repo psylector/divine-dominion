@@ -1,0 +1,34 @@
+# gdlint configuration for divine-dominion
+# Docs: https://github.com/Scony/godot-gdscript-toolkit/wiki/3.-Linter
+
+class-definitions-order:
+  - tools
+  - classnames
+  - extends
+  - docstrings
+  - signals
+  - enums
+  - consts
+  - exports
+  - pubvars
+  - prvvars
+  - onreadypubvars
+  - onreadyprvvars
+  - staticvars
+  - others
+
+# Limits — reasonable for game code
+function-arguments-number: 6
+max-public-methods: 25
+max-returns: 6
+max-line-length: 120
+max-file-lines: 500
+function-name: "(_on_[a-z_0-9]+|_[a-z_][a-z_0-9]*|[a-z_][a-z_0-9]*)"
+class-name: "([A-Z][a-zA-Z0-9]*|_[A-Z][a-zA-Z0-9]*)"
+sub-class-name: "_?[A-Z][a-zA-Z0-9]*"
+function-preload-variable-name: "[A-Z][A-Z0-9_]*"
+
+# Disable checks that are too strict for prototype phase
+disable:
+  - no-elif-return
+  - no-else-return
