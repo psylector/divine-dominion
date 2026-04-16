@@ -97,12 +97,11 @@ Do not implement: sprites/animations, audio, multiplayer, alliances, shields, sa
 
 **Direct push to main is blocked.** All changes must go through a Pull Request.
 
-### PR merge requirements (all must pass):
+### PR merge requirements:
 1. **CI checks** — `Lint GDScript` + `Validate Godot Project` must pass
-2. **CodeRabbit approval** — must approve with no unresolved findings
-3. **All review threads resolved** — no open comments/issues
+2. **CodeRabbit** reviews PRs automatically but does not block merge
 
-When all three conditions are met, **auto-merge** kicks in automatically.
+When CI passes, **auto-merge** kicks in automatically.
 Repo admin can bypass in emergencies.
 
 ### How to deliver changes:
