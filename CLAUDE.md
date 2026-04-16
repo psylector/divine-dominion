@@ -93,16 +93,38 @@ Or use `gdformat scripts/ scenes/` to auto-fix formatting. Pre-commit hooks run 
 
 Do not implement: sprites/animations, audio, multiplayer, alliances, shields, save/load UI, settings menu, localization. These are planned for future iterations.
 
-## Code Review Workflow
+## Branch Protection & Merge Policy
 
-This project uses a multi-layered code quality pipeline:
+**Direct push to main is blocked.** All changes must go through a Pull Request.
 
-1. **Local pre-commit hooks** (`gdlint`, `gdformat`) — run before every commit
-2. **GitHub Actions CI** — validates syntax, style, and Godot project integrity on every PR
-3. **CodeRabbit** — AI-based review focused on architecture, logic, and guidelines
+### PR merge requirements (all must pass):
+1. **CI checks** — `Lint GDScript` + `Validate Godot Project` must pass
+2. **CodeRabbit approval** — must approve with no unresolved findings
+3. **All review threads resolved** — no open comments/issues
 
-When opening a PR, let CodeRabbit complete its review before merging.
-Path-specific review rules are defined in `.coderabbit.yaml`.
+When all three conditions are met, **auto-merge** kicks in automatically.
+Repo admin can bypass in emergencies.
+
+### How to deliver changes:
+
+```bash
+git checkout -b feature/my-change
+# ... make changes ...
+gdlint scripts/ scenes/
+gdformat scripts/ scenes/
+git add . && git commit -m "Description"
+git push -u origin feature/my-change
+gh pr create --fill
+```
+
+The PR will be auto-merged once CI + CodeRabbit pass. On merge to main, the **rolling release** workflow automatically exports a new Windows build to GitHub Releases (`latest` tag).
+
+### Pipeline overview:
+1. **Local pre-commit hooks** (`gdlint`, `gdformat`) — catch issues before commit
+2. **GitHub Actions CI** — validates syntax, style, and Godot project on every PR
+3. **CodeRabbit** — AI-based code review (path-specific rules in `.coderabbit.yaml`)
+4. **Auto-merge** — when all checks pass
+5. **Rolling release** — every merge to main builds and publishes Windows binary
 
 ## Workflow
 
