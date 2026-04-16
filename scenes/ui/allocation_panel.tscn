@@ -1,0 +1,257 @@
+[gd_scene load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scenes/ui/allocation_panel.gd" id="1"]
+
+[node name="AllocationPanel" type="PanelContainer"]
+custom_minimum_size = Vector2(0, 220)
+script = ExtResource("1")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 5
+
+[node name="VBox" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 2
+
+[node name="SectorTitle" type="Label" parent="MarginContainer/VBox"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "No sector selected"
+horizontal_alignment = 1
+
+[node name="NoSelectionLabel" type="Label" parent="MarginContainer/VBox"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Click a sector you own to allocate men."
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="SlidersContainer" type="VBoxContainer" parent="MarginContainer/VBox"]
+unique_name_in_owner = true
+layout_mode = 2
+visible = false
+theme_override_constants/separation = 2
+
+[node name="IdleRow" type="HBoxContainer" parent="MarginContainer/VBox/SlidersContainer"]
+layout_mode = 2
+custom_minimum_size = Vector2(0, 28)
+theme_override_constants/separation = 4
+
+[node name="IdleLabel" type="Label" parent="MarginContainer/VBox/SlidersContainer/IdleRow"]
+unique_name_in_owner = true
+layout_mode = 2
+custom_minimum_size = Vector2(140, 0)
+text = "Idle: 0"
+vertical_alignment = 1
+
+[node name="IdleSlider" type="HSlider" parent="MarginContainer/VBox/SlidersContainer/IdleRow"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+custom_minimum_size = Vector2(150, 24)
+step = 1.0
+
+[node name="IdleMM" type="Button" parent="MarginContainer/VBox/SlidersContainer/IdleRow"]
+unique_name_in_owner = true
+layout_mode = 2
+custom_minimum_size = Vector2(32, 0)
+text = "--"
+
+[node name="IdleM" type="Button" parent="MarginContainer/VBox/SlidersContainer/IdleRow"]
+unique_name_in_owner = true
+layout_mode = 2
+custom_minimum_size = Vector2(28, 0)
+text = "-"
+
+[node name="IdleP" type="Button" parent="MarginContainer/VBox/SlidersContainer/IdleRow"]
+unique_name_in_owner = true
+layout_mode = 2
+custom_minimum_size = Vector2(28, 0)
+text = "+"
+
+[node name="IdlePP" type="Button" parent="MarginContainer/VBox/SlidersContainer/IdleRow"]
+unique_name_in_owner = true
+layout_mode = 2
+custom_minimum_size = Vector2(32, 0)
+text = "++"
+
+[node name="MiningRow" type="HBoxContainer" parent="MarginContainer/VBox/SlidersContainer"]
+layout_mode = 2
+custom_minimum_size = Vector2(0, 28)
+theme_override_constants/separation = 4
+
+[node name="MiningLabel" type="Label" parent="MarginContainer/VBox/SlidersContainer/MiningRow"]
+unique_name_in_owner = true
+layout_mode = 2
+custom_minimum_size = Vector2(140, 0)
+text = "Mining: 0"
+vertical_alignment = 1
+
+[node name="MiningSlider" type="HSlider" parent="MarginContainer/VBox/SlidersContainer/MiningRow"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+custom_minimum_size = Vector2(150, 24)
+step = 1.0
+
+[node name="MiningMM" type="Button" parent="MarginContainer/VBox/SlidersContainer/MiningRow"]
+unique_name_in_owner = true
+layout_mode = 2
+custom_minimum_size = Vector2(32, 0)
+text = "--"
+
+[node name="MiningM" type="Button" parent="MarginContainer/VBox/SlidersContainer/MiningRow"]
+unique_name_in_owner = true
+layout_mode = 2
+custom_minimum_size = Vector2(28, 0)
+text = "-"
+
+[node name="MiningP" type="Button" parent="MarginContainer/VBox/SlidersContainer/MiningRow"]
+unique_name_in_owner = true
+layout_mode = 2
+custom_minimum_size = Vector2(28, 0)
+text = "+"
+
+[node name="MiningPP" type="Button" parent="MarginContainer/VBox/SlidersContainer/MiningRow"]
+unique_name_in_owner = true
+layout_mode = 2
+custom_minimum_size = Vector2(32, 0)
+text = "++"
+
+[node name="DesignRow" type="HBoxContainer" parent="MarginContainer/VBox/SlidersContainer"]
+layout_mode = 2
+custom_minimum_size = Vector2(0, 28)
+theme_override_constants/separation = 4
+
+[node name="DesignLabel" type="Label" parent="MarginContainer/VBox/SlidersContainer/DesignRow"]
+unique_name_in_owner = true
+layout_mode = 2
+custom_minimum_size = Vector2(140, 0)
+text = "Design: 0"
+vertical_alignment = 1
+
+[node name="DesignSlider" type="HSlider" parent="MarginContainer/VBox/SlidersContainer/DesignRow"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+custom_minimum_size = Vector2(150, 24)
+step = 1.0
+
+[node name="DesignMM" type="Button" parent="MarginContainer/VBox/SlidersContainer/DesignRow"]
+unique_name_in_owner = true
+layout_mode = 2
+custom_minimum_size = Vector2(32, 0)
+text = "--"
+
+[node name="DesignM" type="Button" parent="MarginContainer/VBox/SlidersContainer/DesignRow"]
+unique_name_in_owner = true
+layout_mode = 2
+custom_minimum_size = Vector2(28, 0)
+text = "-"
+
+[node name="DesignP" type="Button" parent="MarginContainer/VBox/SlidersContainer/DesignRow"]
+unique_name_in_owner = true
+layout_mode = 2
+custom_minimum_size = Vector2(28, 0)
+text = "+"
+
+[node name="DesignPP" type="Button" parent="MarginContainer/VBox/SlidersContainer/DesignRow"]
+unique_name_in_owner = true
+layout_mode = 2
+custom_minimum_size = Vector2(32, 0)
+text = "++"
+
+[node name="ManufactureRow" type="HBoxContainer" parent="MarginContainer/VBox/SlidersContainer"]
+layout_mode = 2
+custom_minimum_size = Vector2(0, 28)
+theme_override_constants/separation = 4
+
+[node name="ManufactureLabel" type="Label" parent="MarginContainer/VBox/SlidersContainer/ManufactureRow"]
+unique_name_in_owner = true
+layout_mode = 2
+custom_minimum_size = Vector2(140, 0)
+text = "Manufacture: 0"
+vertical_alignment = 1
+
+[node name="ManufactureSlider" type="HSlider" parent="MarginContainer/VBox/SlidersContainer/ManufactureRow"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+custom_minimum_size = Vector2(150, 24)
+step = 1.0
+
+[node name="ManufactureMM" type="Button" parent="MarginContainer/VBox/SlidersContainer/ManufactureRow"]
+unique_name_in_owner = true
+layout_mode = 2
+custom_minimum_size = Vector2(32, 0)
+text = "--"
+
+[node name="ManufactureM" type="Button" parent="MarginContainer/VBox/SlidersContainer/ManufactureRow"]
+unique_name_in_owner = true
+layout_mode = 2
+custom_minimum_size = Vector2(28, 0)
+text = "-"
+
+[node name="ManufactureP" type="Button" parent="MarginContainer/VBox/SlidersContainer/ManufactureRow"]
+unique_name_in_owner = true
+layout_mode = 2
+custom_minimum_size = Vector2(28, 0)
+text = "+"
+
+[node name="ManufacturePP" type="Button" parent="MarginContainer/VBox/SlidersContainer/ManufactureRow"]
+unique_name_in_owner = true
+layout_mode = 2
+custom_minimum_size = Vector2(32, 0)
+text = "++"
+
+[node name="ArmyRow" type="HBoxContainer" parent="MarginContainer/VBox/SlidersContainer"]
+layout_mode = 2
+custom_minimum_size = Vector2(0, 28)
+theme_override_constants/separation = 4
+
+[node name="ArmyLabel" type="Label" parent="MarginContainer/VBox/SlidersContainer/ArmyRow"]
+unique_name_in_owner = true
+layout_mode = 2
+custom_minimum_size = Vector2(140, 0)
+text = "Army: 0"
+vertical_alignment = 1
+
+[node name="ArmySlider" type="HSlider" parent="MarginContainer/VBox/SlidersContainer/ArmyRow"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+custom_minimum_size = Vector2(150, 24)
+step = 1.0
+
+[node name="ArmyMM" type="Button" parent="MarginContainer/VBox/SlidersContainer/ArmyRow"]
+unique_name_in_owner = true
+layout_mode = 2
+custom_minimum_size = Vector2(32, 0)
+text = "--"
+
+[node name="ArmyM" type="Button" parent="MarginContainer/VBox/SlidersContainer/ArmyRow"]
+unique_name_in_owner = true
+layout_mode = 2
+custom_minimum_size = Vector2(28, 0)
+text = "-"
+
+[node name="ArmyP" type="Button" parent="MarginContainer/VBox/SlidersContainer/ArmyRow"]
+unique_name_in_owner = true
+layout_mode = 2
+custom_minimum_size = Vector2(28, 0)
+text = "+"
+
+[node name="ArmyPP" type="Button" parent="MarginContainer/VBox/SlidersContainer/ArmyRow"]
+unique_name_in_owner = true
+layout_mode = 2
+custom_minimum_size = Vector2(32, 0)
+text = "++"

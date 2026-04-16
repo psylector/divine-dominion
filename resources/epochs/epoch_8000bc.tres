@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="EpochData" load_steps=5 format=3]
+
+[ext_resource type="Script" path="res://scripts/data/epoch_data.gd" id="1"]
+[ext_resource type="Resource" path="res://resources/weapons/rocks.tres" id="2"]
+[ext_resource type="Resource" path="res://resources/weapons/slings.tres" id="3"]
+[ext_resource type="Resource" path="res://resources/weapons/spears.tres" id="4"]
+
+[resource]
+script = ExtResource("1")
+name = "8000 BC"
+level = 3
+design_points_required = 120
+available_weapons = [ExtResource("2"), ExtResource("3"), ExtResource("4")]

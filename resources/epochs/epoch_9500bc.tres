@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="EpochData" load_steps=3 format=3]
+
+[ext_resource type="Script" path="res://scripts/data/epoch_data.gd" id="1"]
+[ext_resource type="Resource" path="res://resources/weapons/rocks.tres" id="2"]
+
+[resource]
+script = ExtResource("1")
+name = "9500 BC"
+level = 1
+design_points_required = 0
+available_weapons = [ExtResource("2")]

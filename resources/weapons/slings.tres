@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="WeaponData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/data/weapon_data.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+name = "Slings"
+icon = "🏹"
+damage = 1.5
+element_cost = 4
+manufacture_ticks = 20

@@ -1,0 +1,30 @@
+[gd_scene load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scenes/ui/speed_controls.gd" id="1"]
+
+[node name="SpeedControls" type="HBoxContainer"]
+script = ExtResource("1")
+theme_override_constants/separation = 5
+
+[node name="PauseButton" type="Button" parent="."]
+unique_name_in_owner = true
+layout_mode = 2
+text = "⏸ Pause"
+
+[node name="Speed1Button" type="Button" parent="."]
+unique_name_in_owner = true
+layout_mode = 2
+toggle_mode = true
+text = "1x"
+
+[node name="Speed2Button" type="Button" parent="."]
+unique_name_in_owner = true
+layout_mode = 2
+toggle_mode = true
+text = "2x"
+
+[node name="Speed4Button" type="Button" parent="."]
+unique_name_in_owner = true
+layout_mode = 2
+toggle_mode = true
+text = "4x"
