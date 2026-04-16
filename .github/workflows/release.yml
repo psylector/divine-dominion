@@ -70,15 +70,23 @@ jobs:
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          gh release create latest \
-            exports/DivineDominion.exe \
-            exports/DivineDominion.console.exe \
-            --repo ${{ github.repository }} \
-            --title "Latest Build" \
-            --notes "Rolling release — always the latest build from main.
+          ls -la exports/
+          ASSETS=""
+          for f in exports/*; do
+            if [ -f "$f" ]; then
+              ASSETS="$ASSETS $f"
+            fi
+          done
+          NOTES="Rolling release — always the latest build from main.
 
           **Commit:** ${{ github.sha }}
-          **Date:** $(date -u +%Y-%m-%d\ %H:%M\ UTC)
+          **Date:** $(date -u +'%Y-%m-%d %H:%M UTC')
 
-          Download \`DivineDominion.exe\` and run. No installation needed." \
+          Download DivineDominion.exe and run. No installation needed."
+
+          gh release create latest \
+            $ASSETS \
+            --repo ${{ github.repository }} \
+            --title "Latest Build" \
+            --notes "$NOTES" \
             --prerelease
