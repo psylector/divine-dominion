@@ -48,7 +48,8 @@ func show_combat_report(report: Dictionary) -> void:
 	var result: String = "VICTORY!" if report["attacker_won"] else "DEFEAT!"
 	var text: String = "=== %s ===\n" % result
 	text += "Attacker: %d men (str %.0f)\n" % [report["atk_men_before"], report["atk_strength"]]
-	text += "Defender: %d army + %d militia (str %.0f)\n" % [report["def_men_before"], report["def_militia"], report["def_strength"]]
+	text += "Defender: %d army + %d militia (str %.0f)\n" % [
+		report["def_men_before"], report["def_militia"], report["def_strength"]]
 	text += "---\n"
 	text += "Atk losses: %d | Survivors: %d\n" % [report["atk_losses"], report["atk_survivors"]]
 	text += "Def losses: %d | Survivors: %d" % [report["def_losses"], report["def_survivors"]]
@@ -116,7 +117,8 @@ func _try_move(target_pos: Vector2i) -> void:
 
 func _on_attack_pressed() -> void:
 	_mode = Mode.AWAITING_ATTACK
-	var targets: PackedStringArray = _get_neighbor_targets(func(s: SectorModel) -> bool: return s.owner_id > 0 and s.owner_id != 0)
+	var targets: PackedStringArray = _get_neighbor_targets(
+		func(s: SectorModel) -> bool: return s.owner_id > 0 and s.owner_id != 0)
 	if targets.is_empty():
 		status_label.text = "No enemy neighbors!"
 		_mode = Mode.IDLE

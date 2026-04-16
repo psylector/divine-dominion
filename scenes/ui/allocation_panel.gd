@@ -2,8 +2,22 @@
 ## Moving a non-idle task up takes from Idle; moving it down returns to Idle.
 extends PanelContainer
 
+## Button name prefixes per task, matched to enum values.
+const TASK_NAMES: Array[String] = ["Idle", "Mining", "Design", "Manufacture", "Army"]
+const TASK_ENUMS: Array[SectorModel.Task] = [
+	SectorModel.Task.IDLE,
+	SectorModel.Task.MINING,
+	SectorModel.Task.DESIGN,
+	SectorModel.Task.MANUFACTURE,
+	SectorModel.Task.ARMY,
+]
+
 var _selected_sector: Vector2i = Vector2i(-1, -1)
 var _updating: bool = false
+## Maps SectorModel.Task enum -> slider node.
+var _task_sliders: Dictionary = {}
+## Maps SectorModel.Task enum -> Array of buttons for that task.
+var _task_buttons: Dictionary = {}
 
 @onready var idle_slider: HSlider = %IdleSlider
 @onready var mining_slider: HSlider = %MiningSlider
@@ -20,21 +34,6 @@ var _updating: bool = false
 @onready var sector_title: Label = %SectorTitle
 @onready var no_selection_label: Label = %NoSelectionLabel
 @onready var sliders_container: VBoxContainer = %SlidersContainer
-
-## Maps SectorModel.Task enum -> slider node.
-var _task_sliders: Dictionary = {}
-## Maps SectorModel.Task enum -> Array of buttons for that task.
-var _task_buttons: Dictionary = {}
-
-## Button name prefixes per task, matched to enum values.
-const TASK_NAMES: Array[String] = ["Idle", "Mining", "Design", "Manufacture", "Army"]
-const TASK_ENUMS: Array[SectorModel.Task] = [
-	SectorModel.Task.IDLE,
-	SectorModel.Task.MINING,
-	SectorModel.Task.DESIGN,
-	SectorModel.Task.MANUFACTURE,
-	SectorModel.Task.ARMY,
-]
 
 
 func _ready() -> void:

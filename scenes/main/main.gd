@@ -29,13 +29,13 @@ func _ready() -> void:
 	manufacture_system.setup(tick_engine)
 
 	# Create sector views
-	var sector_scene: PackedScene = preload("res://scenes/ui/sector_view.tscn")
+	var SECTOR_SCENE: PackedScene = preload("res://scenes/ui/sector_view.tscn")
 	island_grid.columns = GameState.world.grid_size.x
 
 	for y: int in range(GameState.world.grid_size.y):
 		for x: int in range(GameState.world.grid_size.x):
 			var pos: Vector2i = Vector2i(x, y)
-			var view: ColorRect = sector_scene.instantiate()
+			var view: ColorRect = SECTOR_SCENE.instantiate()
 			island_grid.add_child(view)
 			view.setup(pos)
 			view.sector_selected.connect(_on_sector_selected)
@@ -113,7 +113,8 @@ func _on_combat_report(report: Dictionary) -> void:
 	text += "  Men: %d  |  Strength: %.0f\n" % [report["atk_men_before"], report["atk_strength"]]
 	text += "  Losses: %d  |  Survivors: %d\n\n" % [report["atk_losses"], report["atk_survivors"]]
 	text += "ENEMY FORCES:\n"
-	text += "  Army: %d  |  Militia: %d  |  Strength: %.0f\n" % [report["def_men_before"], report["def_militia"], report["def_strength"]]
+	text += "  Army: %d  |  Militia: %d  |  Str: %.0f\n" % [
+		report["def_men_before"], report["def_militia"], report["def_strength"]]
 	text += "  Losses: %d  |  Survivors: %d" % [report["def_losses"], report["def_survivors"]]
 
 	report_label.text = text

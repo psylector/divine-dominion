@@ -70,9 +70,11 @@ func _evaluate_state() -> State:
 	# Check tech level — research if behind or early game
 	var player: PlayerModel = GameState.get_player(AI_PLAYER_ID)
 	var human: PlayerModel = GameState.get_player(0)
-	if player and human and player.tech_level < human.tech_level:
-		return State.RESEARCH
-	if player and player.tech_level < 1:
+	var needs_research: bool = (
+		(player and human and player.tech_level < human.tech_level)
+		or (player and player.tech_level < 1)
+	)
+	if needs_research:
 		return State.RESEARCH
 
 	# Check if there are neutral sectors to expand into (only if we have army ready)
@@ -91,10 +93,7 @@ func _evaluate_state() -> State:
 	for sector: SectorModel in my_sectors:
 		total_army += sector.men[SectorModel.Task.ARMY]
 
-	if total_army >= MIN_ARMY_TO_ATTACK:
-		return State.ATTACK
-
-	# Not enough army yet — keep building up (allocate to army via ATTACK state)
+	# Build up army and attack when ready
 	return State.ATTACK
 
 
