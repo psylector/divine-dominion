@@ -1,0 +1,73 @@
+name: Rolling Release
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  export:
+    name: Export and Release
+    runs-on: ubuntu-latest
+    container:
+      image: barichello/godot-ci:4.6.2
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup export templates
+        run: |
+          mkdir -p /root/.local/share/godot/export_templates/4.6.2.stable
+          mv /root/.local/share/godot/templates/4.6.2.stable/* /root/.local/share/godot/export_templates/4.6.2.stable/ || true
+
+      - name: Import project
+        run: godot --headless --import
+
+      - name: Export Windows
+        run: |
+          mkdir -p exports
+          godot --headless --export-release "Windows Desktop" exports/DivineDominion.exe
+
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: windows-build
+          path: exports/
+
+  release:
+    name: Update Rolling Release
+    needs: export
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Download artifacts
+        uses: actions/download-artifact@v4
+        with:
+          name: windows-build
+          path: exports/
+
+      - name: Delete existing latest release
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: gh release delete latest --repo ${{ github.repository }} --yes 2>/dev/null || true
+
+      - name: Delete latest tag
+        run: |
+          git push --delete origin latest 2>/dev/null || true
+
+      - name: Create rolling release
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          gh release create latest \
+            exports/DivineDominion.exe \
+            exports/DivineDominion.console.exe \
+            --repo ${{ github.repository }} \
+            --title "Latest Build" \
+            --notes "Rolling release — always the latest build from main.
+
+          **Commit:** ${{ github.sha }}
+          **Date:** $(date -u +%Y-%m-%d\ %H:%M\ UTC)
+
+          Download \`DivineDominion.exe\` and run. No installation needed." \
+            --prerelease
