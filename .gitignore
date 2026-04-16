@@ -1,6 +1,9 @@
 # Godot 4 generated files
 .godot/
 
+# Export binaries (use GitHub Releases)
+exports/
+
 # OS files
 .DS_Store
 Thumbs.db

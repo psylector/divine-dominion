@@ -23,4 +23,4 @@ Open the project in Godot editor and run `scenes/main/main.tscn`.
 
 ## Pre-built Binaries
 
-Windows executables are available in the `exports/` folder — no Godot installation needed to play.
+Windows executables are available on the [Releases page](https://github.com/psylector/divine-dominion/releases) — no Godot installation needed to play.
